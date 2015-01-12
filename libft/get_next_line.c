@@ -6,11 +6,12 @@
 /*   By: vchaillo <vchaillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/22 08:14:44 by vchaillo          #+#    #+#             */
-/*   Updated: 2014/12/17 02:00:19 by valentin         ###   ########.fr       */
+/*   Updated: 2015/01/12 20:15:54 by vchaillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
+#include <stdio.h>
 
 static int	my_realloc(int const fd, char **tmp, int *ret)
 {
@@ -23,6 +24,7 @@ static int	my_realloc(int const fd, char **tmp, int *ret)
 		*tmp = ft_strnew(0);
 	buffer[*ret] = '\0';
 	*tmp = ft_strjoin(*tmp, buffer);
+	free(buffer);
 	return (0);
 }
 
@@ -42,13 +44,11 @@ static int	get_endl(char **tmp, char **line)
 
 int			get_next_line(int const fd, char **line)
 {
-	static char		*tmp[256];
-	int			ret;
+	static char		*tmp[1024];
+	int				ret;
 
 	if (!line || fd < 0)
 		return (-1);
-	if (*line)
-		free(*line);
 	ret = BUFF_SIZE;
 	while (ret > 0 || ft_strlen(tmp[fd]))
 	{
@@ -59,9 +59,11 @@ int			get_next_line(int const fd, char **line)
 		if (ret == 0 && ft_strlen(tmp[fd]))
 		{
 			*line = ft_strdup(tmp[fd]);
+			ft_bzero(tmp[fd], ft_strlen(tmp[fd]));
 			free(tmp[fd]);
 			return (1);
 		}
 	}
+	free(tmp[fd]);
 	return (0);
 }
