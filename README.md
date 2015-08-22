@@ -1,5 +1,5 @@
 #libft
-
+------------
 ##Todo list:
 
 - Ameliorer la libft en utilisant l'arithmetique des pointeurs
@@ -7,5 +7,5 @@
 - Reverifier la protection de chacune des fonctions
 - Moulitest nouvelle version
 
-#
+-------------
 Project of 42
