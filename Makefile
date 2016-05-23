@@ -9,11 +9,14 @@
 #    Updated: 2015/02/17 08:46:37 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 NAME = libft.a
 
-OBJS_PATH = objs/
+CC	=	gcc
+CFLAGS	+=	-Wall -Wextra -Werror -g
+RM	=	rm -Rf
 
-SRCS = ft_strlen.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putendl.c\
+SRC =  ft_strlen.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putendl.c\
 	   ft_strclr.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c\
 	   ft_strncat.c ft_strcmp.c ft_strstr.c ft_strchr.c ft_isalpha.c\
 	   ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_tolower.c\
@@ -26,37 +29,36 @@ SRCS = ft_strlen.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putendl.c\
 	   ft_strmapi.c ft_itoa.c ft_strsplit.c ft_lstnew.c ft_lstdelone.c\
 	   ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c get_next_line.c
 
-FLAGS = -Wall -Wextra -Werror -g
+INC = -I include
 
-OBJS = $(SRCS:.c=.o)
+OBJ	=	$(patsubst %.c, obj/%.o, $(SRC))
+
 
 all: $(NAME)
-
-$(NAME):
-	@gcc -c $(SRCS) $(FLAGS) -I includes
-	@ar rc $(NAME) $(OBJS)
+$(NAME): obj $(OBJ)
+	@echo "[\033[1;32m******  Creating libft.a  ******\033[m]"
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@mkdir $(OBJS_PATH)
-	@mv $(OBJS) $(OBJS_PATH)
-	@echo "\033[32mlibft.a was created\033[0m"
 
-norm:
-	@echo "\033[32mnorminette...\033[0m"
-	@norminette $(SRCS) includes/libft.h
+obj/%.o: src/%.c
+	@$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+	@echo "[\033[1;32m√\033[m]" $<
 
-rm:
-	@rm -f test1
-	@rm -f test2
-	@rm -f test3
+obj:
+	@mkdir -p obj
 
 clean:
-	@rm -rf $(OBJS_PATH)
-	@echo "\033[31mSuppression des .o de la libft\033[0m"
+	@echo "[\033[31;1m******  Cleaning object files  ******\033[0m]"
+	@$(RM) obj/
 
-fclean: clean
-	@rm -f $(NAME)
-	@echo "\033[31mSuppression libft.a\033[0m"
+fclean:	clean
+	@echo "[\033[31;1m******  Cleaning libft.a  ******\033[0m]"
+	@$(RM) $(NAME)
+
+norm:
+	@echo "[\033[1;32m******  norminette ...  ******\033[0m]"
+	@norminette **/*.[ch]
 
 re: fclean all
 
-.PHONY: all check test norm rm clean fclean re
+.PHONY: all obj clean fclean norm re
