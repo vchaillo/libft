@@ -10,7 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S), Linux)
+	NAME = libft_linux.a
+else
+	NAME = libft.a
+endif
+
 
 CC	=	gcc
 CFLAGS	+=	-Wall -Wextra -Werror -g
