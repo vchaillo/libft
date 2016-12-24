@@ -6,7 +6,7 @@
 /*   By: vchaillo <vchaillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:05:44 by vchaillo          #+#    #+#             */
-/*   Updated: 2016/12/24 00:58:01 by valentinchaillou89###   ########.fr       */
+/*   Updated: 2016/12/24 01:00:44 by valentinchaillou89###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/uio.h>
-# include "structs.h"
+# include "structs_libft.h"
 # include "term_colors.h"
 
 # define BUFF_SIZE 8
