@@ -6,22 +6,24 @@
 #    By: vchaillo <vchaillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 15:04:37 by vchaillo          #+#    #+#              #
-#    Updated: 2016/12/24 01:05:37 by valentinchaillou89###   ########.fr        #
+#    Updated: 2016/12/26 19:55:34 by valentinchaillou89###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC	=	gcc
-CFLAGS	+=	-Wall -Wextra -Werror -g
-RM	=	rm -Rf
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
+RM = rm -Rf
 
 # Colors
-NO_COLOR =		\033[0m
-OK_COLOR =		\033[32;1m
-KO_COLOR =		\033[31;1m
-WARN_COLOR =	\033[34;1m
-SILENT_COLOR =	\033[30;1m
+GREY = \033[30;1m
+RED = \033[31;1m
+GREEN =	\033[32;1m
+YELLOW = \033[33;1m
+BLUE = \033[34;1m
+WHITE = \033[37;1m
+END_COLOR =	\033[0m
 
 # Directories
 SRC_FOLDER = srcs/
@@ -119,28 +121,28 @@ all: $(NAME)
 $(OBJ_FOLDER)%.o:
 		@mkdir -p $(OBJ_FOLDER)
 		@$(CC) -c $(subst .o,.c,$(subst $(OBJ_FOLDER),$(SRC_FOLDER),$(subst __,/,$@))) $(INC) $(CFLAGS) $(MACROS) -o $@
-		@printf "[$(OK_COLOR)√$(NO_COLOR)] "
+		@printf "[$(GREEN)√$(END_COLOR)] "
 		@echo "$(subst .o,.c,$(subst $(OBJ_FOLDER),$(SRC_FOLDER),$(subst __,/,$@)))"
 
 $(NAME): $(OBJ)
 		@echo "==========================="
-		@printf "$(WARN_COLOR)Creating $(NAME)... $(NO_COLOR)"
+		@printf "$(WHITE)Creating $(NAME)... $(END_COLOR)"
 		@ar rc $(NAME) $(OBJ)
 		@ranlib $(NAME)
-		@echo "$(OK_COLOR)Done √$(NO_COLOR)"
+		@echo "$(GREEN)Done √$(END_COLOR)"
 		@echo "==========================="
 
 clean:
 		@$(RM) $(OBJ)
 		@$(RM) $(OBJ_FOLDER)
-		@echo "$(WARN_COLOR)libft$(SILENT_COLOR) - Cleaning object files$(NO_COLOR)"
+		@echo "$(BLUE)libft$(GREY) - Cleaning object files$(END_COLOR)"
 
 fclean:	clean
-		@echo "$(WARN_COLOR)libft$(SILENT_COLOR) - Cleaning library$(NO_COLOR)"
+		@echo "$(BLUE)libft$(GREY) - Cleaning library$(END_COLOR)"
 		@$(RM) $(NAME)
 
 norm:
-		@echo "$(WARN_COLORNorminette...$(NO_COLOR)"
+		@echo "$(BLUE)Norminette...$(END_COLOR)"
 		@norminette **/*.[ch]
 
 re: fclean all
