@@ -9,6 +9,7 @@ As a 42 student you'll be able, through this first project, to strengthen your s
 
 ===========
 
+|||
 ||Functions list|
 |Print||
 ||* ft_putchar.c|
