@@ -5,7 +5,8 @@ libft
 
 ### Description
 
-As a 42 student you'll be able, through this first project, to strengthen your skills learned during the bootcamp. You'll recode functions from the standard C library, and some other very useful functions that you'll be able to use all along the program.
+As a 42 student you'll be able, through this first project, to strengthen your skills learned during the bootcamp.
+You'll recode functions from the standard C library, and some other very useful functions that you'll be able to use all along the program.
 
 ### Functions list
 
@@ -44,7 +45,7 @@ As a 42 student you'll be able, through this first project, to strengthen your s
 | ft_striter.c  | ft_strjoin.c  |                 |
 | ft_striteri.c |               |                 |
 
-## Todo list
+### Todo list
 
 - [ ] Create some description files
 - [ ] Moulitest new update
